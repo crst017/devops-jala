@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  hosts: localhost
+  connection: local 
+  tasks:
+    - name: "Show Network Interfaces"
+      command: ifconfig
+      register: details
+    - name: 'Get Interfaces details'
+      debug:
+        msg: "{{ details.stdout }}"
